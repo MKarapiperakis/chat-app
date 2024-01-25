@@ -50,9 +50,9 @@ io.on("connection", (socket) => {
   });
 });
 
-// app.get("/", (req, res) => {
-//   res.send("<h1>Hello world!!!</h1>");
-// });
+app.get("/", (req, res) => {
+  res.redirect("https://admin.socket.io/#/");
+});
 
 instrument(io, {
   auth: {
