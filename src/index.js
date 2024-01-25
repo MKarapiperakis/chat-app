@@ -5,6 +5,7 @@ const server = http.createServer(app);
 const cors = require("cors");
 const PORT = process.env.PORT || 3010;
 const { instrument } = require("@socket.io/admin-ui");
+const notifyAdmin = require("./middlewares/notify-admin");
 
 const { Server } = require("socket.io");
 
@@ -23,7 +24,9 @@ io.on("connection", (socket) => {
   console.log(`user connected`);
 
   socket.on("join-room", (room, username, callback) => {
-    // const notify_admin = process.env.NOTIFY_ADMIN;
+    const notify_admin = process.env.NOTIFY_ADMIN;
+
+    if (notify_admin === "true") notifyAdmin(username);
 
     console.log(`user ${username} just joined the room: ${room}`);
     socket.join(room);
@@ -60,7 +63,7 @@ instrument(io, {
     username: process.env.INSTRUMENT_USERNAME,
     password: process.env.INSTRUMENT_PASSWORD,
   },
-  mode: "development"
+  mode: "development",
 });
 
 server.listen(PORT, () => {
