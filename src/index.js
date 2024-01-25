@@ -60,6 +60,7 @@ instrument(io, {
     username: process.env.INSTRUMENT_USERNAME,
     password: process.env.INSTRUMENT_PASSWORD,
   },
+  mode: "development"
 });
 
 server.listen(PORT, () => {
