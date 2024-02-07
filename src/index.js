@@ -6,7 +6,6 @@ const cors = require("cors");
 const PORT = process.env.PORT || 3010;
 const { instrument } = require("@socket.io/admin-ui");
 const notifyAdmin = require("./middlewares/notify-admin");
-
 const { Server } = require("socket.io");
 
 const io = new Server(server, {
@@ -30,7 +29,6 @@ io.on("connection", (socket) => {
 
     console.log(`user ${username} just joined the room: ${room}`);
     socket.join(room);
-
     socket.to(room).emit("joined", username);
   });
 
@@ -51,6 +49,16 @@ io.on("connection", (socket) => {
   socket.on("leave-room", (room, username) => {
     socket.to(room).emit("disconnected", username);
   });
+
+  socket.on("isTyping", (username) => {
+    console.log(`${username} is typing`);
+  });
+
+  socket.on("isNotTyping", (username) => {
+    console.log(`${username} stop typing`);
+  });
+
+
 });
 
 app.get("/", (req, res) => {
