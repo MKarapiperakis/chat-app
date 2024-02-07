@@ -52,11 +52,11 @@ io.on("connection", (socket) => {
 
   socket.on("isTyping", (username) => {
     console.log(`${username} is typing`);
-    socket.broadcast.emit("isTyping");
+    socket.to(room).emit("isTyping", username);
   });
 
   socket.on("isNotTyping", (username) => {
-    socket.broadcast.emit("isNotTyping");
+    socket.to(room).emit("isNotTyping", username);
   });
 
 
