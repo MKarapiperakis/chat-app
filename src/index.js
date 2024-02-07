@@ -50,12 +50,12 @@ io.on("connection", (socket) => {
     socket.to(room).emit("disconnected", username);
   });
 
-  socket.on("isTyping", (username) => {
+  socket.on("isTyping", (username,room) => {
     console.log(`${username} is typing`);
     socket.to(room).emit("isTyping", username);
   });
 
-  socket.on("isNotTyping", (username) => {
+  socket.on("isNotTyping", (username,room) => {
     socket.to(room).emit("isNotTyping", username);
   });
 
