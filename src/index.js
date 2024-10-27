@@ -20,6 +20,7 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
+  console.log(`current envirnoment is ${process.env.NODE_ENV}`)
   console.log(`user connected`);
 
   socket.on("join-room", (room, username, callback) => {
