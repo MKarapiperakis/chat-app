@@ -1,4 +1,5 @@
 const express = require("express");
+require('dotenv').config();
 const app = express();
 const http = require("http");
 const server = http.createServer(app);
@@ -20,6 +21,7 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
+  console.log(`current envirnoment is ${process.env.NODE_ENV}`)
   console.log(`user connected`);
 
   socket.on("join-room", (room, username, callback) => {
