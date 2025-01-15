@@ -29,9 +29,14 @@ module.exports = (username) => {
       let info = await transporter.sendMail({
         from: `"Villa Agapi Automation Service" <${process.env.EMAIL_SENDER}>`,
         to: process.env.EMAIL_SENDER,
-        subject: `Chat request`,
+        subject: `New Chat request`,
         html: `
-                <h1> ${username} is waiting for you in chat room <h1>
+                <p> <b>${username}</b> is waiting for you in the chat room </p>
+
+                <hr style = "width: 200px">
+                <div style="text-align: center;">
+                    <i>Villa Agapi Automation Service</i>
+                </div>
                 `,
       });
       return info.messageId;
