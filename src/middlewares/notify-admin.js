@@ -31,7 +31,7 @@ module.exports = (username) => {
         to: process.env.EMAIL_SENDER,
         subject: `New Chat request`,
         html: `
-                <p> <b>${username}</b> is waiting for you in the chat room </p>
+                <p style="font-size: 24px;"> <b>${username}</b> is waiting for you in the chat room </p>
 
                 <hr style = "width: 200px">
                 <div style="text-align: center;">
